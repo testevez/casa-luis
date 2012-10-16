@@ -1,7 +1,7 @@
 # Ignore paths that contain user-generated content.
-*/files
-*/private
-default/settings.php
+/*/files
+/*/private
+/default/settings.php
 
 # Packages #
 ############
