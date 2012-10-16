@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ */
+
+define('CASALUIS_MENU_VID', 2);
+define('CASALUIS_MENU_DEFAULT_TID', 1);
+
+
+/**
+ * Implements hook_menu().
+ */
+function casaluis_menu_menu() {
+  $path_prefix = 'menu';
+  
+  $terms = taxonomy_get_tree(CASALUIS_MENU_VID);
+ 
+  $items[$path_prefix] = array(
+    'title' => t('Menu'),
+    'description' => 'Lists the Casa Luis menu.',
+    'access arguments' => array('access content'),
+    'page callback' => 'casaluis_menu_page',
+    'menu_name' => 'main-menu',
+  );
+  foreach ($terms as $term) {
+    $items[$path_prefix .'/'. $term->tid] = array(
+      'title' => $term->name,
+      'description' => 'Lists all the menu items in '. $term->name .'.',
+      'access arguments' => array('access content'),
+      'menu_name' => 'menu-food-menu',
+      'weight' => $term->weight,
+      'page callback' => 'views_embed_view',
+      'page arguments' => array('menu_list', 'default', $term->tid),
+    );
+  }
+  return $items;
+}
+
+function casaluis_menu_page() {
+  return array('#markup' => t('eeeee'));
+}
+/****  Internal helper functions ********/
+
+//dsm(taxonomy_get_tree(CASALUIS_MENU_VID));

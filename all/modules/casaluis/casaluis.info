@@ -1,0 +1,11 @@
+name = Casa Luis 
+description = Code to support Casa Luis
+package = Casa Luis
+version = VERSION
+core = 7.x
+
+
+; Information added by drupal.org packaging script on 2012-08-01
+version = "7.x"
+datestamp = "1343839327"
+
